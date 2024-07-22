@@ -262,7 +262,7 @@ else :
 
               file_sk_old_html += data.file_sk === ''
                 ? '<small class="text-muted">Tidak ada</small>'
-                : `<a href="<?= base_url_return('assets/uploads/file_sk') ?>${data.file_sk}" target="_blank">${data.file_sk}</a>`;
+                : `<a href="<?= base_url_return('assets/uploads/file_sk') ?>${data.file_sk}" target="_blank">file</a>`;
               
               $('#ModalInputSuratKeluar #xid_surat_keluar').val(data.id_surat_keluar);
               $('#ModalInputSuratKeluar #xid_kode_surat').val(data.id_kode_surat).trigger('change');
