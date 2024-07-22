@@ -11,5 +11,4 @@
 	
 	DEFINE("SITE_NAME", "Sistem Informasi Pengelolaan Surat");
 	DEFINE("SITE_NAME_SHORT", "SIPS");
-	DEFINE("SITE_NAME_SHORT_ALTERNATIVE", "Desa Rawa Jaya");
 ?>
