@@ -54,6 +54,35 @@ else :
 
             </div>
             
+            <!-- Tools Cetak Pengumuman -->
+            <div class="card mb-4 mt-5">
+              <div class="card-header">
+                <div>
+                  <i data-feather="settings" class="me-2 mt-1"></i>
+                  Tools Cetak Laporan
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row gx-3">
+                  <div class="col-md-2 mb-3">
+                    <label class="small mb-1" for="xdari_tanggal">Dari Tanggal</label>
+                    <input class="form-control" id="xdari_tanggal" type="date" name="xdari_tanggal" required>
+                  </div>
+                  <div class="col-md-2 mb-3">
+                    <label class="small mb-1" for="xsampai_tanggal">Sampai Tanggal</label>
+                    <input class="form-control" id="xsampai_tanggal" type="date" name="xsampai_tanggal" required>
+                  </div>
+                  <div class="col-md-2 mb-3">
+                    <label class="small mb-1 invisible" for="xcetak_laporan">Filter Button</label>
+                    <button class="btn btn-primary w-100" id="xcetak_laporan" type="button">
+                      <i data-feather="printer" class="me-1"></i>
+                      Cetak
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
             <!-- Main page content-->
             <div class="card card-header-actions mb-4 mt-5">
               <div class="card-header">
@@ -201,6 +230,16 @@ else :
             'imageFormat': 'The image format is not allowed ({{ value }} only).',
             'fileExtension': 'Ekstensi file hanya boleh ({{ value }}).'
           }
+        });
+
+        
+        $('#xcetak_laporan').on('click', function() {
+          const dari_tanggal = $('#xdari_tanggal').val();
+          const sampai_tanggal = $('#xsampai_tanggal').val();
+          
+          const url = `laporan_surat_masuk.php?dari_tanggal=${dari_tanggal}&sampai_tanggal=${sampai_tanggal}`;
+          
+          printExternal(url);
         });
 
         
