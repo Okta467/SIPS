@@ -103,8 +103,8 @@ else :
                           <button class="btn btn-datatable btn-icon btn-transparent-dark me-2 toggle_modal_ubah"
                             data-id_kode_surat="<?= $kode_surat['id'] ?>" 
                             data-kode_surat="<?= $kode_surat['kode_surat'] ?>" 
-                            data-keterangan="<?= $kode_surat['keterangan'] ?>"
-                            data-nama_kode="<?= $kode_surat['nama_kode'] ?>">
+                            data-nama_kode="<?= $kode_surat['nama_kode'] ?>"
+                            data-keterangan="<?= $kode_surat['keterangan'] ?>">
                             <i class="fa fa-pen-to-square"></i>
                           </button>
                           <button class="btn btn-datatable btn-icon btn-transparent-dark me-2 toggle_swal_hapus"
@@ -156,7 +156,7 @@ else :
               </div>
             
               <div class="mb-3">
-                <label class="small mb-1" for="xketerangan">Nama Kode</label>
+                <label class="small mb-1" for="xketerangan">Keterangan</label>
                 <textarea class="form-control" id="xketerangan" name="xketerangan" rows="5" placeholder="" autocomplete="off"></textarea>
               </div>
 
@@ -189,14 +189,15 @@ else :
 
 
         $('.toggle_modal_ubah').on('click', function() {
-          const id_kode_surat   = $(this).data('id_kode_surat');
-          const nama_kode = $(this).data('nama_kode');
+          const data = $(this).data();
           
           $('#ModalInputKodeSurat .modal-title').html(`<i data-feather="edit" class="me-2 mt-1"></i>Ubah Kode Surat`);
           $('#ModalInputKodeSurat form').attr({action: 'kode_surat_ubah.php', method: 'post'});
 
-          $('#ModalInputKodeSurat #xid_kode_surat').val(id_kode_surat);
-          $('#ModalInputKodeSurat #xnama_kode').val(nama_kode);
+          $('#ModalInputKodeSurat #xid_kode_surat').val(data.id_kode_surat);
+          $('#ModalInputKodeSurat #xkode_surat').val(data.kode_surat);
+          $('#ModalInputKodeSurat #xnama_kode').val(data.nama_kode);
+          $('#ModalInputKodeSurat #xketerangan').val(data.keterangan);
 
           // Re-init all feather icons
           feather.replace();
