@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2024 at 07:14 AM
+-- Generation Time: Jul 22, 2024 at 08:55 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -230,9 +230,10 @@ CREATE TABLE `tbl_pegawai` (
 --
 
 INSERT INTO `tbl_pegawai` (`id`, `id_pengguna`, `id_jabatan`, `id_pangkat_golongan`, `id_pendidikan`, `id_jurusan_pendidikan`, `nip`, `nama_pegawai`, `jk`, `alamat`, `tmp_lahir`, `tgl_lahir`, `tahun_ijazah`, `created_at`, `updated_at`) VALUES
-(1, 47, 1, 16, 9, 4, '1234567890123456', 'Test Kepala Desa', 'l', 'Palembang', 'Palembang', '1997-01-05', 2010, '2024-07-21 07:05:18', '2024-07-21 08:27:53'),
+(1, 63, 1, 16, 9, 4, '1234567890123456', 'Test Kepala Desa', 'l', 'Palembang', 'Palembang', '1997-01-05', 2010, '2024-07-21 07:05:18', '2024-07-22 05:42:36'),
 (2, 48, 3, 14, 7, 11, '6818385748000934', 'Test Pengelola Surat', 'l', 'Palembang', 'Palembang', '2024-07-09', 2009, '2024-07-21 07:17:08', NULL),
-(15, NULL, 7, 16, 9, 4, '4635889616676390', 'Test Tanpa Hak Akses', 'l', 'Palembang', 'Palembang', '1995-01-01', 2010, '2024-07-21 07:42:04', '2024-07-21 08:26:41');
+(15, NULL, 7, 16, 9, 4, '4635889616676390', 'Test Tanpa Hak Akses', 'l', 'Palembang', 'Palembang', '1995-01-01', 2010, '2024-07-21 07:42:04', '2024-07-22 05:50:31'),
+(16, 65, 2, 4, 7, 11, '1147471733743553', 'Test Sekretaris Desa', 'p', 'Griya Agung', 'Banyuasin', '2024-07-07', 2017, '2024-07-22 06:00:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -285,11 +286,9 @@ CREATE TABLE `tbl_pengguna` (
 
 INSERT INTO `tbl_pengguna` (`id`, `username`, `password`, `hak_akses`, `created_at`, `last_login`) VALUES
 (9, 'admin', '$2y$10$r6i9ouw57cTTevcboVpfxuaaeGE.LqvH0ivtFunGnpjhus3jtxu1q', 'admin', '2024-06-10 14:42:24', '2024-07-20 20:34:05'),
-(25, '196506121990022003', '$2y$10$r6i9ouw57cTTevcboVpfxuaaeGE.LqvH0ivtFunGnpjhus3jtxu1q', 'kepala_desa', '2024-06-24 18:29:06', '2024-07-11 06:41:24'),
-(35, '1989986520190220', '$2y$10$LrNrbSt9hTDGlwWP8vEpj.axs3qGn0aWFd4UYcjL.w5q79LY3Ouiy', 'kepala_desa', '2024-06-27 14:46:25', '2024-07-11 06:41:06'),
-(47, '123456789012345678', '$2y$10$Qdw3OiSzj13ztr3IwUX2GO3NE31FO9/OjoCCv8yVdjWbadA2JQfHK', 'kepala_desa', '2024-07-21 07:05:18', NULL),
-(48, '681838574800093422', '$2y$10$WNQx.dXbv6whlPzQOtJfIeh.7.G3ic.H.VJ8pEUbmLNV3vc5.vde6', 'pengelola_surat', '2024-07-21 07:17:08', NULL),
-(62, '1234567890123456', '$2y$10$j0g789mR1IH7mjVFlYUqMeLjQ4A.1KWvJipESZiKSR7Z3p9F/fY9W', 'kepala_desa', '2024-07-21 08:27:53', NULL);
+(48, '681838574800093422', '$2y$10$WNQx.dXbv6whlPzQOtJfIeh.7.G3ic.H.VJ8pEUbmLNV3vc5.vde6', 'pengelola_surat', '2024-07-21 07:17:08', '2024-07-22 01:38:45'),
+(63, '1234567890123456', '$2y$10$2sC3QO3nrV42Thrq0mo2pOzgybLyj3A/8g38vh36RXxbt8D146xT2', 'kepala_desa', '2024-07-22 05:42:36', '2024-07-22 01:20:18'),
+(65, '114747173374355387', '$2y$10$mg8z5NJxmpFB/uVqquIAQ.6IXPVj4ni8BMxnGTWMyPiF6XBq6E3/6', 'sekretaris_desa', '2024-07-22 06:00:29', '2024-07-22 01:15:28');
 
 -- --------------------------------------------------------
 
@@ -367,8 +366,8 @@ CREATE TABLE `tbl_tujuan_disposisi_surat_masuk` (
 --
 
 INSERT INTO `tbl_tujuan_disposisi_surat_masuk` (`id`, `id_disposisi_surat_masuk`, `id_jabatan`, `created_at`, `updated_at`) VALUES
-(13, 12, 2, '2024-07-22 05:11:24', NULL),
-(14, 12, 3, '2024-07-22 05:11:24', NULL);
+(15, 12, 2, '2024-07-22 06:13:28', NULL),
+(16, 12, 3, '2024-07-22 06:13:28', NULL);
 
 --
 -- Indexes for dumped tables
@@ -473,7 +472,7 @@ ALTER TABLE `tbl_agenda`
 -- AUTO_INCREMENT for table `tbl_disposisi_surat_masuk`
 --
 ALTER TABLE `tbl_disposisi_surat_masuk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tbl_jabatan`
@@ -491,7 +490,7 @@ ALTER TABLE `tbl_jurusan_pendidikan`
 -- AUTO_INCREMENT for table `tbl_kode_surat`
 --
 ALTER TABLE `tbl_kode_surat`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_pangkat_golongan`
@@ -503,7 +502,7 @@ ALTER TABLE `tbl_pangkat_golongan`
 -- AUTO_INCREMENT for table `tbl_pegawai`
 --
 ALTER TABLE `tbl_pegawai`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tbl_pendidikan`
@@ -515,7 +514,7 @@ ALTER TABLE `tbl_pendidikan`
 -- AUTO_INCREMENT for table `tbl_pengguna`
 --
 ALTER TABLE `tbl_pengguna`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `tbl_surat_keluar`
@@ -533,7 +532,7 @@ ALTER TABLE `tbl_surat_masuk`
 -- AUTO_INCREMENT for table `tbl_tujuan_disposisi_surat_masuk`
 --
 ALTER TABLE `tbl_tujuan_disposisi_surat_masuk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
