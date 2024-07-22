@@ -115,107 +115,11 @@ else :
       </div>
     </div>
     
-    <!--============================= MODAL INPUT KODE SURAT =============================-->
-    <div class="modal fade" id="ModalInputKodeSurat" tabindex="-1" role="dialog" aria-labelledby="ModalInputKodeSuratTitle" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="ModalInputKodeSuratTitle">Modal title</h5>
-            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <form>
-            <div class="modal-body">
-              
-              <input type="hidden" id="xid_kode_surat" name="xid_kode_surat">
-            
-              <div class="mb-3">
-                <label class="small mb-1" for="xkode_surat">Kode Surat</label>
-                <input type="text" name="xkode_surat" maxlength="64" class="form-control" id="xkode_surat" placeholder="Enter kode surat" required />
-              </div>
-            
-              <div class="mb-3">
-                <label class="small mb-1" for="xnama_kode">Nama Kode</label>
-                <input type="text" name="xnama_kode" maxlength="255" class="form-control" id="xnama_kode" placeholder="Enter nama kode" required />
-              </div>
-            
-              <div class="mb-3">
-                <label class="small mb-1" for="xketerangan">Nama Kode</label>
-                <textarea class="form-control" id="xketerangan" name="xketerangan" rows="5" placeholder="" autocomplete="off"></textarea>
-              </div>
-
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-light border" type="button" data-bs-dismiss="modal">Batal</button>
-              <button class="btn btn-primary" type="submit">Simpan</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!--/.modal-input-kode-surat -->
-    
     <?php include '_partials/script.php' ?>
     <?php include '../helpers/sweetalert2_notify.php' ?>
     
     <!-- PAGE SCRIPT -->
-    <script>
-      $(document).ready(function() {
-        $('.toggle_modal_tambah').on('click', function() {
-          $('#ModalInputKodeSurat .modal-title').html(`<i data-feather="plus-circle" class="me-2 mt-1"></i>Tambah Kode Surat`);
-          $('#ModalInputKodeSurat form').attr({action: 'kode_surat_tambah.php', method: 'post'});
-
-          // Re-init all feather icons
-          feather.replace();
-          
-          $('#ModalInputKodeSurat').modal('show');
-        });
-
-
-        $('.toggle_modal_ubah').on('click', function() {
-          const id_kode_surat   = $(this).data('id_kode_surat');
-          const nama_kode = $(this).data('nama_kode');
-          
-          $('#ModalInputKodeSurat .modal-title').html(`<i data-feather="edit" class="me-2 mt-1"></i>Ubah Kode Surat`);
-          $('#ModalInputKodeSurat form').attr({action: 'kode_surat_ubah.php', method: 'post'});
-
-          $('#ModalInputKodeSurat #xid_kode_surat').val(id_kode_surat);
-          $('#ModalInputKodeSurat #xnama_kode').val(nama_kode);
-
-          // Re-init all feather icons
-          feather.replace();
-          
-          $('#ModalInputKodeSurat').modal('show');
-        });
-        
-
-        $('#datatablesSimple').on('click', '.toggle_swal_hapus', function() {
-          const id_kode_surat   = $(this).data('id_kode_surat');
-          const nama_kode = $(this).data('nama_kode');
-          
-          Swal.fire({
-            title: "Konfirmasi Tindakan?",
-            html: `Hapus data kode_surat: <strong>${nama_kode}?</strong>`,
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Ya, konfirmasi!"
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire({
-                title: "Tindakan Dikonfirmasi!",
-                text: "Halaman akan di-reload untuk memproses.",
-                icon: "success",
-                timer: 3000
-              }).then(() => {
-                window.location = `kode_surat_hapus.php?xid_kode_surat=${id_kode_surat}`;
-              });
-            }
-          });
-        });
-        
-      });
-    </script>
+    <script></script>
 
   </body>
 
