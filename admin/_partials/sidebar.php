@@ -21,37 +21,6 @@ $user_logged_in = $_SESSION['nama_pegawai'] ?? $_SESSION['nama_guest'] ?? $_SESS
         Pengguna
       </a>
       
-      <div class="sidenav-menu-heading">Surat</div>
-      
-      <a class="nav-link <?php if ($current_page === 'surat_masuk') echo 'active' ?>" href="surat_masuk.php?go=surat_masuk">
-        <div class="nav-link-icon"><i data-feather="inbox"></i></div>
-        Surat Masuk
-      </a>
-      
-      <a class="nav-link <?php if ($current_page === 'surat_keluar') echo 'active' ?>" href="surat_keluar.php?go=surat_keluar">
-        <div class="nav-link-icon"><i data-feather="send"></i></div>
-        Surat Keluar
-      </a>
-      
-      <div class="sidenav-menu-heading">Tools Surat</div>
-      
-      <a class="nav-link <?php if ($current_page === 'kode_surat') echo 'active' ?>" href="kode_surat.php?go=kode_surat">
-        <div class="nav-link-icon"><i data-feather="hash"></i></div>
-        Kode Surat
-      </a>
-      
-      <a class="nav-link <?php if ($current_page === 'disposisi_surat_masuk') echo 'active' ?>" href="disposisi_surat_masuk.php?go=disposisi_surat_masuk">
-        <div class="nav-link-icon"><i data-feather="tag"></i></div>
-        Disposisi Surat Masuk
-      </a>
-      
-      <div class="sidenav-menu-heading">Agenda</div>
-      
-      <a class="nav-link <?php if ($current_page === 'agenda') echo 'active' ?>" href="agenda.php?go=agenda">
-        <div class="nav-link-icon"><i data-feather="calendar"></i></div>
-        Agenda
-      </a>
-      
       <div class="sidenav-menu-heading">Pegawai</div>
       
       <a class="nav-link <?php if ($current_page === 'pegawai') echo 'active' ?>" href="pegawai.php?go=pegawai">
