@@ -5,7 +5,7 @@
 	// cek apakah tombol submit ditekan sebelum memproses verifikasi login
 	if (!isset($_POST['xsubmit'])) {
 		$_SESSION['msg'] = 'other_error';
-		echo "<meta http-equiv='refresh' content='0;login.php'>";
+		echo "<meta http-equiv='refresh' content='0;index.php'>";
 		return;
 	}
 
@@ -29,14 +29,14 @@
 	// redirect ke halaman login jika pengguna tidak ditemukan
 	if (!$user) {
 		$_SESSION['msg'] = 'user_not_found';
-		echo "<meta http-equiv='refresh' content='0;login.php'>";
+		echo "<meta http-equiv='refresh' content='0;index.php'>";
 		return;
 	}
 
 	// cek apakah passwordnya benar?
 	if (!password_verify($password, $user['password'])) {
 		$_SESSION['msg'] = 'wrong_password';
-		echo "<meta http-equiv='refresh' content='0;login.php'>";
+		echo "<meta http-equiv='refresh' content='0;index.php'>";
 		return;
 	}
 

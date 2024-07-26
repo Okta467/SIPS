@@ -11,4 +11,6 @@
 	
 	DEFINE("SITE_NAME", "Sistem Informasi Pengelolaan Surat");
 	DEFINE("SITE_NAME_SHORT", "SIPS");
+	DEFINE("SITE_NAME_LANDING_PAGE", "Website Desa Gasing");
+	DEFINE("SITE_NAME_LANDING_PAGE_SHORT", "Desa Gasing");
 ?>
