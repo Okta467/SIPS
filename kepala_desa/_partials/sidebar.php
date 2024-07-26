@@ -17,7 +17,7 @@ $user_logged_in = $_SESSION['nama_pegawai'] ?? $_SESSION['nama_guest'] ?? $_SESS
       <div class="sidenav-menu-heading">Profil</div>
       
       <a class="nav-link <?php if ($current_page === 'profil') echo 'active' ?>" href="profil.php?go=profil">
-        <div class="nav-link-icon"><i data-feather="users"></i></div>
+        <div class="nav-link-icon"><i data-feather="user"></i></div>
         Profil
       </a>
       
