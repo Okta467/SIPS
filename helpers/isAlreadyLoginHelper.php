@@ -9,15 +9,19 @@ function isAlreadyLoggedIn($hak_akses): bool {
 	// alihkan user ke halamannya masing-masing
 	switch ($hak_akses) {
 		case 'admin':
-			header("location:admin");
+			header("location:admin?go=dashboard");
 			break;
 
-		case 'guest':
-			header("location:guest/index.php?go=dashboard");
+		case 'pengelola_surat':
+			header("location:pengelola_surat/?go=dashboard");
 			break;
-			
-		case 'pimpinan':
-			header("location:pimpinan/index.php?go=dashboard");
+
+		case 'kepala_desa':
+			header("location:kepala_desa/?go=dashboard");
+			break;
+
+		case 'sekretaris_desa':
+			header("location:sekretaris_desa/?go=dashboard");
 			break;
 		
 		default:
