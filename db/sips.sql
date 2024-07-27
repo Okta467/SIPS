@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2024 at 08:55 AM
+-- Generation Time: Jul 27, 2024 at 10:19 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -285,8 +285,8 @@ CREATE TABLE `tbl_pengguna` (
 --
 
 INSERT INTO `tbl_pengguna` (`id`, `username`, `password`, `hak_akses`, `created_at`, `last_login`) VALUES
-(9, 'admin', '$2y$10$r6i9ouw57cTTevcboVpfxuaaeGE.LqvH0ivtFunGnpjhus3jtxu1q', 'admin', '2024-06-10 14:42:24', '2024-07-20 20:34:05'),
-(48, '681838574800093422', '$2y$10$WNQx.dXbv6whlPzQOtJfIeh.7.G3ic.H.VJ8pEUbmLNV3vc5.vde6', 'pengelola_surat', '2024-07-21 07:17:08', '2024-07-22 01:38:45'),
+(9, 'admin', '$2y$10$r6i9ouw57cTTevcboVpfxuaaeGE.LqvH0ivtFunGnpjhus3jtxu1q', 'admin', '2024-06-10 14:42:24', '2024-07-26 09:30:24'),
+(48, '681838574800093422', '$2y$10$WNQx.dXbv6whlPzQOtJfIeh.7.G3ic.H.VJ8pEUbmLNV3vc5.vde6', 'pengelola_surat', '2024-07-21 07:17:08', '2024-07-26 10:33:13'),
 (63, '1234567890123456', '$2y$10$2sC3QO3nrV42Thrq0mo2pOzgybLyj3A/8g38vh36RXxbt8D146xT2', 'kepala_desa', '2024-07-22 05:42:36', '2024-07-22 01:20:18'),
 (65, '114747173374355387', '$2y$10$mg8z5NJxmpFB/uVqquIAQ.6IXPVj4ni8BMxnGTWMyPiF6XBq6E3/6', 'sekretaris_desa', '2024-07-22 06:00:29', '2024-07-22 01:15:28');
 
@@ -345,7 +345,8 @@ CREATE TABLE `tbl_surat_masuk` (
 --
 
 INSERT INTO `tbl_surat_masuk` (`id`, `id_kode_surat`, `asal_surat`, `no_surat`, `tgl_surat`, `perihal_indeks`, `isi_surat`, `jml_lampiran`, `file_sm`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Kesbangpol', '070/Kesbangpol/1371/2018', '2018-03-27', 'Surat Izin', 'Mengizinkan Pengambilan Data', 0, 'd57db0ac26dd76453fdafe7d551cdfa57311e2fcb6bb5c79fe4bab079e2f29ab.pdf', '2024-07-22 03:10:39', NULL);
+(1, 1, 'Kesbangpol', '070/Kesbangpol/1371/2018', '2018-03-27', 'Surat Izin', 'Mengizinkan Pengambilan Data', 0, 'd57db0ac26dd76453fdafe7d551cdfa57311e2fcb6bb5c79fe4bab079e2f29ab.pdf', '2024-07-22 03:10:39', NULL),
+(2, 1, 'Manajer Pembelian', '13/PB/III/2020', '2024-07-26', 'Pengiriman Barang yang Rusak', 'Yth. Direktur Jaya Kencana<br>\r\nJl. Kemuning Raya No. 34<br>\r\nJakarta\r\n\r\nDengan hormat.<br>\r\nDengan ini kami beritahukan kepada Sudara atas kiriman berupa 10 unit Televisi LCD dengan merk LG yang kami terima dalam kondisi rusak. Setelah kami adakan penelitian ternyata terdapat 5 barang televisi yang mengalami kerusakan.\r\n\r\nKami berpendapat bahwa kerusakan tersebut karena kurangnya ketelitian dalam *packing* barang. Kami juga menganggap hal ini adalah kelalaian dari pihak Anda sebagai pengirim barang pesanan tersebut.\r\n\r\nSehubungan dengan terjadinya kerusakan pada barang yang Sudara kirim, maka kami bermaksud untuk meminta barang baru dari 5 kerusakan Televisi LCD sebagai pengganti barang yang rusak. Dengan ongkos kirim menjadi tanggungan Saudara. Untuk lebih memudahkan menyelesaikan persoalan tersebut, bersama ini kami lampirkan dokumen-dokumen dari barang-barang tersebut.\r\n\r\nDemikian surat klaim ini kami buat dengan harapan adanya perbaikan kualitas barang, sehingga ke ke depannya tidak terjadi masalah yang sama. Atas perhatian Saudara, kami ucapkan terima kasih.\r\n<br><br><br>\r\nHormat kami,\r\n<br><br><br>\r\nMoh. Arifin<br>\r\nManajer Pembelian', 0, 'dff7f92e33d37559d23c56faf8d47a457da15ba58eae8abae3a1d9b3cee0f188.pdf', '2024-07-26 14:36:38', '2024-07-26 14:38:11');
 
 -- --------------------------------------------------------
 
@@ -526,7 +527,7 @@ ALTER TABLE `tbl_surat_keluar`
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_tujuan_disposisi_surat_masuk`
