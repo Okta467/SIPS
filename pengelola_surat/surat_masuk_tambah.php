@@ -22,7 +22,7 @@
     $asal_surat     = htmlspecialchars($purifier->purify($_POST['xasal_surat']));
     $perihal_indeks = htmlspecialchars($purifier->purify($_POST['xperihal_indeks']));
     $tgl_surat      = $_POST['xtgl_surat'];
-    $isi_surat      = htmlspecialchars($purifier->purify($_POST['xisi_surat']));
+    $isi_surat      = $_POST['xisi_surat'];
     $jml_lampiran   = $_POST['xjml_lampiran'];
     $file_sm        = $_FILES['xfile_sm'];
     $nama_berkas    = '';

@@ -13,6 +13,7 @@
     $stmt = mysqli_stmt_init($connection);
 
     $id_surat_masuk = $_POST['id_surat_masuk'];
+    $return_as_json = $_POST['return_as_json'] ?? true;
 
     $query = "SELECT
             a.id AS id_surat_masuk, a.asal_surat, a.no_surat, a.tgl_surat, a.perihal_indeks, a.isi_surat, a.jml_lampiran, a.file_sm,
@@ -35,6 +36,10 @@
     mysqli_stmt_close($stmt);
     mysqli_close($connection);
 
-    echo json_encode($surat_masuks);
+    if ($return_as_json) {
+        echo json_encode($surat_masuks);
+    } else {
+        return $surat_masuks;
+    }
 
 ?>

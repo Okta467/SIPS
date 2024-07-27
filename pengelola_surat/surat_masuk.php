@@ -123,12 +123,31 @@ else :
       </div>
     </div>
     
-    <!--============================= MODAL INPUT SURAT MASUK =============================-->
-    <div class="modal fade" id="ModalInputSuratKeluar" tabindex="-1" role="dialog" aria-labelledby="ModalInputSuratKeluarTitle" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+    <!--============================= MODAL DETAIL ISI SURAT MASUK =============================-->
+    <div class="modal fade" id="ModalDetailIsiSuratMasuk" tabindex="-1" role="dialog" aria-labelledby="ModalDetailIsiSuratMasukTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="ModalInputSuratKeluarTitle">Modal title</h5>
+            <h5 class="modal-title" id="ModalDetailIsiSuratMasukTitle">Modal title</h5>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="p-3" id="detail_isi_surat_masuk"></div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-light border" type="button" data-bs-dismiss="modal">Tutup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/.modal-detail-isi-surat-masuk -->
+    
+    <!--============================= MODAL INPUT SURAT MASUK =============================-->
+    <div class="modal fade" id="ModalInputSuratMasuk" tabindex="-1" role="dialog" aria-labelledby="ModalInputSuratMasukTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ModalInputSuratMasukTitle">Modal title</h5>
             <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <form>
@@ -176,7 +195,7 @@ else :
               
               <div class="mb-3">
                 <label class="small mb-1" for="xisi_surat">Isi Surat <span class="text-danger fw-bold">*</span></label>
-                <textarea class="form-control" id="xisi_surat" name="xisi_surat" rows="5" placeholder="Keterangan isi surat" autocomplete="off"></textarea>
+                <textarea id="xisi_surat" name="xisi_surat" placeholder="Keterangan isi surat"></textarea>
               </div>
 
               <div class="mb-3">
@@ -214,6 +233,24 @@ else :
     <script>
       $(document).ready(function() {
         
+        let defaultEasyMDEText = `Untuk melihat tampilan teks ini, klik icon \`mata\` di bagian kanan toolbar.
+Untuk memisahkan paragraf, berikan satu baris kosong antara
+paragraf 1
+
+dan
+
+paragraf 2.
+Selain itu, Anda juga dapat menggunakan tag html, misalnya
+<br>
+untuk memisahkan antar paragraf dengan baris yang lebih luas.`;
+
+        var easyMDE = new EasyMDE({
+          element: document.getElementById('xisi_surat'),
+          toolbar: ['bold', 'italic', 'heading', '|', 'quote', 'unordered-list', 'ordered-list', '|', 'link', 'preview', 'guide'],
+          minHeight: '100px',
+        });
+        
+        
         $('.dropify').dropify({
           messages: {
             'default': 'Drag and drop a file here or click',
@@ -231,6 +268,23 @@ else :
             'fileExtension': 'Ekstensi file hanya boleh ({{ value }}).'
           }
         });
+        
+        // Redefined toggle tooltip because of datatables server side
+        $('.toggle_tooltip').tooltip({
+          placement: 'top',
+          delay: {
+            show: 500,
+            hide: 0
+          }
+        });
+
+        
+        const modalInputSuratMasukSelect = $('#ModalInputSuratMasuk .select2');
+        
+        initSelect2(modalInputSuratMasukSelect, {
+          width: '100%',
+          dropdownParent: "#ModalInputSuratMasuk .modal-content .modal-body"
+        });
 
         
         $('#xcetak_laporan').on('click', function() {
@@ -242,24 +296,33 @@ else :
           printExternal(url);
         });
 
+
+        $('#tabel_surat_masuk').on('click', '.cetak_surat_masuk', function() {
+          const id_surat_masuk = $(this).data('id_surat_masuk');
+          
+          const url = `surat_masuk_cetak.php?id_surat_masuk=${id_surat_masuk}`;
+
+          printExternal(url);
+        });
+
         
         $('.toggle_modal_tambah').on('click', function() {
-          $('#ModalInputSuratKeluar .modal-title').html(`<i data-feather="plus-circle" class="me-2 mt-1"></i>Tambah Surat Masuk`);
-          $('#ModalInputSuratKeluar form').attr({action: 'surat_masuk_tambah.php', method: 'post', enctype: 'multipart/form-data'});
+          $('#ModalInputSuratMasuk .modal-title').html(`<i data-feather="plus-circle" class="me-2 mt-1"></i>Tambah Surat Masuk`);
+          $('#ModalInputSuratMasuk form').attr({action: 'surat_masuk_tambah.php', method: 'post', enctype: 'multipart/form-data'});
 
           // Re-init all feather icons
           feather.replace();
           
-          $('#ModalInputSuratKeluar').modal('show');
+          $('#ModalInputSuratMasuk').modal('show');
         });
 
 
-        $('.toggle_modal_ubah').on('click', function() {
+        $('#tabel_surat_masuk').on('click', '.toggle_modal_ubah', function() {
           const id_surat_masuk   = $(this).data('id_surat_masuk');
           const nama_surat_masuk = $(this).data('nama_surat_masuk');
           
-          $('#ModalInputSuratKeluar .modal-title').html(`<i data-feather="edit" class="me-2 mt-1"></i>Ubah Surat Masuk`);
-          $('#ModalInputSuratKeluar form').attr({action: 'surat_masuk_ubah.php', method: 'post', enctype: 'multipart/form-data'});
+          $('#ModalInputSuratMasuk .modal-title').html(`<i data-feather="edit" class="me-2 mt-1"></i>Ubah Surat Masuk`);
+          $('#ModalInputSuratMasuk form').attr({action: 'surat_masuk_ubah.php', method: 'post', enctype: 'multipart/form-data'});
 
           $.ajax({
             url: 'get_surat_masuk.php',
@@ -277,27 +340,47 @@ else :
                 ? '<small class="text-muted">Tidak ada</small>'
                 : `<a href="<?= base_url_return('assets/uploads/file_sm') ?>${data.file_sm}" target="_blank">file</a>`;
               
-              $('#ModalInputSuratKeluar #xid_surat_masuk').val(data.id_surat_masuk);
-              $('#ModalInputSuratKeluar #xid_kode_surat').val(data.id_kode_surat).trigger('change');
-              $('#ModalInputSuratKeluar #xasal_surat').val(data.asal_surat);
-              $('#ModalInputSuratKeluar #xno_surat').val(data.no_surat);
-              $('#ModalInputSuratKeluar #xperihal_indeks').val(data.perihal_indeks);
-              $('#ModalInputSuratKeluar #xtanggal_surat').val(data.tanggal_surat);
-              $('#ModalInputSuratKeluar #xisi_surat').val(data.isi_surat);
-              $('#ModalInputSuratKeluar #xcatatan').val(data.catatan);
-              $('#ModalInputSuratKeluar #xjml_lampiran').val(data.jml_lampiran);
-              $('#ModalInputSuratKeluar #xfile_sm_old').html(file_sm_old_html);
+              $('#ModalInputSuratMasuk #xid_surat_masuk').val(data.id_surat_masuk);
+              $('#ModalInputSuratMasuk #xid_kode_surat').val(data.id_kode_surat).trigger('change');
+              $('#ModalInputSuratMasuk #xasal_surat').val(data.asal_surat);
+              $('#ModalInputSuratMasuk #xno_surat').val(data.no_surat);
+              $('#ModalInputSuratMasuk #xperihal_indeks').val(data.perihal_indeks);
+              $('#ModalInputSuratMasuk #xtanggal_surat').val(data.tanggal_surat);
+              $('#ModalInputSuratMasuk #xisi_surat').val(data.isi_surat);
+              $('#ModalInputSuratMasuk #xcatatan').val(data.catatan);
+              $('#ModalInputSuratMasuk #xjml_lampiran').val(data.jml_lampiran);
+              $('#ModalInputSuratMasuk #xfile_sm_old').html(file_sm_old_html);
+              
+              // Sanitize isi surat and set its value to textarea input
+              const isi_surat = data.isi_surat;
+              // const sanitized_isi_surat = DOMPurify.sanitize(isi_surat, { USE_PROFILES: { html: true } });
+              
+              easyMDE.value(isi_surat)
               
               // Re-init all feather icons
               feather.replace();
               
-              $('#ModalInputSuratKeluar').modal('show');
+              $('#ModalInputSuratMasuk').modal('show');
             },
             error: function(request, status, error) {
               // console.log("ajax call went wrong:" + request.responseText);
               console.log("ajax call went wrong:" + error);
             }
           })
+        });
+
+
+        $('#tabel_surat_masuk').on('click', '.toggle_detail_isi_surat', function() {
+          const isi_surat = $(this).data('isi_surat');
+          const isi_surat_marked = marked.parse(isi_surat);
+
+          $('#ModalDetailIsiSuratMasuk .modal-title').html(`<i data-feather="inbox" class="me-2 mt-1"></i>Detail Isi Surat Masuk`);
+          $('#ModalDetailIsiSuratMasuk #detail_isi_surat_masuk').html(isi_surat_marked);
+          
+          // Re-init all feather icons
+          feather.replace();
+
+          $('#ModalDetailIsiSuratMasuk').modal('show');
         });
         
 
@@ -332,7 +415,6 @@ else :
         const formSubmitBtn = $('#toggle_swal_submit');
         const eventName = 'click';
         toggleSwalSubmit(formSubmitBtn, eventName);
-        
       });
     </script>
 
@@ -352,6 +434,12 @@ else :
             <i data-feather="download-cloud" class="me-1"></i>Download
           </a>`;
 
+        // const isi_surat = marked.parse(d.isi_surat);
+        const isi_surat = `<button type="button" class="btn btn-xs rounded-pill btn-outline-primary toggle_detail_isi_surat" data-isi_surat="${d.isi_surat}">
+            <i data-feather="list" class="me-1"></i>
+            Detail Isi Surat
+          </button>`
+
         // `d` is the original data object for the row
         return (
           '<dl>' +
@@ -365,7 +453,7 @@ else :
           '</dd>' +
           '<dt>Isi Surat:</dt>' +
           '<dd>' +
-          d.isi_surat +
+          isi_surat +
           '</dd>' +
           '</dl>'
         );
@@ -374,6 +462,7 @@ else :
       let table = new DataTable('#tabel_surat_masuk', {  
         ajax: `<?= 'get_all_surat_masuk.php' ?>`,
         order: [],
+        scrollX: true,
         columns: [
           {
             className: 'dt-control',
@@ -405,6 +494,10 @@ else :
                   data-kode_surat="${data.kode_surat}"
                   data-no_surat="${data.no_surat}">
                   <i class="fa fa-trash-can"></i>
+                </button>
+                <button class="btn btn-datatable btn-icon btn-transparent-dark me-2 toggle_tooltip cetak_surat_masuk" title="Cetak Surat"
+                  data-id_surat_masuk="${data.id_surat_masuk}">
+                  <i class="fa fa-print"></i>
                 </button>`
             }
           },
