@@ -97,7 +97,7 @@ else :
                   <thead>
                     <tr>
                       <th></th>
-                      <th>#</th>
+                      <th>No Urut</th>
                       <th>Kode Surat</th>
                       <th>No Surat</th>
                       <th>Asal Surat</th>
