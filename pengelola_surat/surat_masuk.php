@@ -142,6 +142,38 @@ else :
     </div>
     <!--/.modal-detail-isi-surat-masuk -->
     
+    <!--============================= MODAL DISPOSISI SURAT MASUK =============================-->
+    <div class="modal fade" id="ModalDisposisiSuratMasuk" tabindex="-1" role="dialog" aria-labelledby="ModalDisposisiSuratMasukTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ModalDisposisiSuratMasukTitle"><i data-feather="tag" class="me-2 mt-1"></i>Disposisi Surat Masuk</h5>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            
+            <table class="table table-striped" id="tabel_disposisi_surat_masuk">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Tgl. Penyelesaian</th>
+                  <th>Instruksi</th>
+                  <th>Diteruskan Ke</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-light border" type="button" data-bs-dismiss="modal">Tutup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/.modal-disposisi-surat-masuk -->
+    
     <!--============================= MODAL INPUT SURAT MASUK =============================-->
     <div class="modal fade" id="ModalInputSuratMasuk" tabindex="-1" role="dialog" aria-labelledby="ModalInputSuratMasukTitle" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -419,6 +451,57 @@ untuk memisahkan antar paragraf dengan baris yang lebih luas.`;
     </script>
 
 
+    <!-- Script for disposisi surat masuk -->
+    <script>
+      let tableDisposisiSuratMasuk = document.getElementById("tabel_disposisi_surat_masuk");
+
+      if (tableDisposisiSuratMasuk) {
+        var datatableDisposisiSuratMasuk = new simpleDatatables.DataTable(tableDisposisiSuratMasuk, {
+          fixedHeader: true,
+          pageLength: 5,
+          lengthMenu: [
+            [3, 5, 10, 25, 50, 100],
+            [3, 5, 10, 25, 50, 100],
+          ]
+        });
+      }
+        
+      $('#tabel_surat_masuk').on('click', '.toggle_disposisi_surat_masuk', function() {
+          const id_surat_masuk = $(this).data('id_surat_masuk');
+        
+          $.ajax({
+            url: 'get_disposisi_surat_masuk_by_id_surat_masuk.php',
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+              'id_surat_masuk': id_surat_masuk
+            },
+            success: function(data) {
+              // add datatables row
+              let i = 1;
+              let rowsData = [];
+              
+              for (key in data) {
+                rowsData.push([i++, data[key]['tgl_penyelesaian'], data[key]['instruksi'], data[key]['diteruskan_ke']]);
+              }
+        
+              datatableDisposisiSuratMasuk.destroy();
+              datatableDisposisiSuratMasuk.init();
+              datatableDisposisiSuratMasuk.insert({
+                data: rowsData
+              });
+              
+              $('#ModalDisposisiSuratMasuk').modal('show');
+            },
+            error: function(request, status, error) {
+              // console.log("ajax call went wrong:" + request.responseText);
+              console.log("ajax call went wrong:" + error);
+            }
+          })
+        });
+    </script>
+
+
     <!-- Script for inner page Agenda Datatables with child row -->
     <script>
       // Formatting function for row details - modify as you need
@@ -433,8 +516,12 @@ untuk memisahkan antar paragraf dengan baris yang lebih luas.`;
           <a class="btn btn-xs rounded-pill bg-blue-soft text-blue" href="<?= base_url('assets/uploads/file_sm/') ?>${d.file_sm}" download>
             <i data-feather="download-cloud" class="me-1"></i>Download
           </a>`;
+          
+        const disposisi = `<button type="button" class="btn btn-xs rounded-pill btn-outline-primary toggle_disposisi_surat_masuk" data-id_surat_masuk="${d.id_surat_masuk}">
+            <i data-feather="list" class="me-1"></i>
+            Disposisi
+          </button>`
 
-        // const isi_surat = marked.parse(d.isi_surat);
         const isi_surat = `<button type="button" class="btn btn-xs rounded-pill btn-outline-primary toggle_detail_isi_surat" data-isi_surat="${d.isi_surat}">
             <i data-feather="list" class="me-1"></i>
             Detail Isi Surat
@@ -450,6 +537,10 @@ untuk memisahkan antar paragraf dengan baris yang lebih luas.`;
           '<dt>Jml. Lampiran:</dt>' +
           '<dd>' +
           d.jml_lampiran +
+          '</dd>' +
+          '<dt>Disposisi:</dt>' +
+          '<dd>' +
+          disposisi +
           '</dd>' +
           '<dt>Isi Surat:</dt>' +
           '<dd>' +
