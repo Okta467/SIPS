@@ -19,6 +19,11 @@
 
 <link href="<?= base_url('assets/css/MY_styles.css') ?>" rel="stylesheet" />
 
-<script data-search-pseudo-elements defer src="<?= base_url('assets/js/fontawesome/fontawesome-all.min.js') ?>" crossorigin="anonymous"></script>
+<?php if (isset($_GET['go']) && $_GET['go'] === 'surat_masuk'): ?>
+    <!-- This is to fix page stuck when using easyMDE  -->
+    <script defer src="<?= base_url('assets/js/fontawesome/fontawesome-all.min.js') ?>" crossorigin="anonymous"></script>
+<?php else: ?>
+    <script data-search-pseudo-elements defer src="<?= base_url('assets/js/fontawesome/fontawesome-all.min.js') ?>" crossorigin="anonymous"></script>
+<?php endif ?>
 
 <script src="<?= base_url('assets/js/feather/feather.min.js') ?>" crossorigin="anonymous"></script>
