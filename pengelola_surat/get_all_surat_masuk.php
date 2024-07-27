@@ -17,7 +17,7 @@
         FROM tbl_surat_masuk AS a
         LEFT JOIN tbl_kode_surat AS b
             ON b.id = a.id_kode_surat
-        ORDER BY a.id DESC";
+        ORDER BY a.tgl_surat DESC";
 
     mysqli_stmt_prepare($stmt, $query);
     mysqli_stmt_execute($stmt);
