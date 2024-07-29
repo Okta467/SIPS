@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2024 at 10:19 AM
+-- Generation Time: Jul 29, 2024 at 06:38 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -221,6 +221,7 @@ CREATE TABLE `tbl_pegawai` (
   `tmp_lahir` varchar(64) NOT NULL,
   `tgl_lahir` date NOT NULL,
   `tahun_ijazah` year(4) NOT NULL,
+  `foto_profil` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -229,11 +230,11 @@ CREATE TABLE `tbl_pegawai` (
 -- Dumping data for table `tbl_pegawai`
 --
 
-INSERT INTO `tbl_pegawai` (`id`, `id_pengguna`, `id_jabatan`, `id_pangkat_golongan`, `id_pendidikan`, `id_jurusan_pendidikan`, `nip`, `nama_pegawai`, `jk`, `alamat`, `tmp_lahir`, `tgl_lahir`, `tahun_ijazah`, `created_at`, `updated_at`) VALUES
-(1, 63, 1, 16, 9, 4, '1234567890123456', 'Test Kepala Desa', 'l', 'Palembang', 'Palembang', '1997-01-05', 2010, '2024-07-21 07:05:18', '2024-07-22 05:42:36'),
-(2, 48, 3, 14, 7, 11, '6818385748000934', 'Test Pengelola Surat', 'l', 'Palembang', 'Palembang', '2024-07-09', 2009, '2024-07-21 07:17:08', NULL),
-(15, NULL, 7, 16, 9, 4, '4635889616676390', 'Test Tanpa Hak Akses', 'l', 'Palembang', 'Palembang', '1995-01-01', 2010, '2024-07-21 07:42:04', '2024-07-22 05:50:31'),
-(16, 65, 2, 4, 7, 11, '1147471733743553', 'Test Sekretaris Desa', 'p', 'Griya Agung', 'Banyuasin', '2024-07-07', 2017, '2024-07-22 06:00:29', NULL);
+INSERT INTO `tbl_pegawai` (`id`, `id_pengguna`, `id_jabatan`, `id_pangkat_golongan`, `id_pendidikan`, `id_jurusan_pendidikan`, `nip`, `nama_pegawai`, `jk`, `alamat`, `tmp_lahir`, `tgl_lahir`, `tahun_ijazah`, `foto_profil`, `created_at`, `updated_at`) VALUES
+(1, 63, 1, 16, 9, 4, '1234567890123456', 'Test Kepala Desa', 'l', 'Palembang', 'Palembang', '1997-01-05', 2010, '', '2024-07-21 07:05:18', '2024-07-22 05:42:36'),
+(2, 48, 3, 14, 7, 11, '6818385748000934', 'Test Pengelola Surat', 'l', 'Palembang', 'Palembang', '2024-07-09', 2009, '4a2f39f7a9ed0aaf792177c12ef542dd23d122e63ae62c1c94349657b96a90b0.jpg', '2024-07-21 07:17:08', '2024-07-29 16:37:59'),
+(15, NULL, 7, 16, 9, 4, '4635889616676390', 'Test Tanpa Hak Akses', 'l', 'Palembang', 'Palembang', '1995-01-01', 2010, '', '2024-07-21 07:42:04', '2024-07-22 05:50:31'),
+(16, 65, 2, 4, 7, 11, '1147471733743553', 'Test Sekretaris Desa', 'p', 'Griya Agung', 'Banyuasin', '2024-07-07', 2017, '', '2024-07-22 06:00:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -285,8 +286,8 @@ CREATE TABLE `tbl_pengguna` (
 --
 
 INSERT INTO `tbl_pengguna` (`id`, `username`, `password`, `hak_akses`, `created_at`, `last_login`) VALUES
-(9, 'admin', '$2y$10$r6i9ouw57cTTevcboVpfxuaaeGE.LqvH0ivtFunGnpjhus3jtxu1q', 'admin', '2024-06-10 14:42:24', '2024-07-26 09:30:24'),
-(48, '681838574800093422', '$2y$10$WNQx.dXbv6whlPzQOtJfIeh.7.G3ic.H.VJ8pEUbmLNV3vc5.vde6', 'pengelola_surat', '2024-07-21 07:17:08', '2024-07-26 10:33:13'),
+(9, 'admin', '$2y$10$r6i9ouw57cTTevcboVpfxuaaeGE.LqvH0ivtFunGnpjhus3jtxu1q', 'admin', '2024-06-10 14:42:24', '2024-07-29 11:22:20'),
+(48, '681838574800093422', '$2y$10$fwr64AIkB2B7RQuGeUodjOrDY8.NCrRyMcDYaZ6ugbKRJNPy1BeMa', 'pengelola_surat', '2024-07-21 07:17:08', '2024-07-29 11:22:27'),
 (63, '1234567890123456', '$2y$10$2sC3QO3nrV42Thrq0mo2pOzgybLyj3A/8g38vh36RXxbt8D146xT2', 'kepala_desa', '2024-07-22 05:42:36', '2024-07-22 01:20:18'),
 (65, '114747173374355387', '$2y$10$mg8z5NJxmpFB/uVqquIAQ.6IXPVj4ni8BMxnGTWMyPiF6XBq6E3/6', 'sekretaris_desa', '2024-07-22 06:00:29', '2024-07-22 01:15:28');
 
@@ -346,7 +347,7 @@ CREATE TABLE `tbl_surat_masuk` (
 
 INSERT INTO `tbl_surat_masuk` (`id`, `id_kode_surat`, `asal_surat`, `no_surat`, `tgl_surat`, `perihal_indeks`, `isi_surat`, `jml_lampiran`, `file_sm`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Kesbangpol', '070/Kesbangpol/1371/2018', '2018-03-27', 'Surat Izin', 'Mengizinkan Pengambilan Data', 0, 'd57db0ac26dd76453fdafe7d551cdfa57311e2fcb6bb5c79fe4bab079e2f29ab.pdf', '2024-07-22 03:10:39', NULL),
-(2, 1, 'Manajer Pembelian', '13/PB/III/2020', '2024-07-26', 'Pengiriman Barang yang Rusak', 'Yth. Direktur Jaya Kencana<br>\r\nJl. Kemuning Raya No. 34<br>\r\nJakarta\r\n\r\nDengan hormat.<br>\r\nDengan ini kami beritahukan kepada Sudara atas kiriman berupa 10 unit Televisi LCD dengan merk LG yang kami terima dalam kondisi rusak. Setelah kami adakan penelitian ternyata terdapat 5 barang televisi yang mengalami kerusakan.\r\n\r\nKami berpendapat bahwa kerusakan tersebut karena kurangnya ketelitian dalam *packing* barang. Kami juga menganggap hal ini adalah kelalaian dari pihak Anda sebagai pengirim barang pesanan tersebut.\r\n\r\nSehubungan dengan terjadinya kerusakan pada barang yang Sudara kirim, maka kami bermaksud untuk meminta barang baru dari 5 kerusakan Televisi LCD sebagai pengganti barang yang rusak. Dengan ongkos kirim menjadi tanggungan Saudara. Untuk lebih memudahkan menyelesaikan persoalan tersebut, bersama ini kami lampirkan dokumen-dokumen dari barang-barang tersebut.\r\n\r\nDemikian surat klaim ini kami buat dengan harapan adanya perbaikan kualitas barang, sehingga ke ke depannya tidak terjadi masalah yang sama. Atas perhatian Saudara, kami ucapkan terima kasih.\r\n<br><br><br>\r\nHormat kami,\r\n<br><br><br>\r\nMoh. Arifin<br>\r\nManajer Pembelian', 0, 'dff7f92e33d37559d23c56faf8d47a457da15ba58eae8abae3a1d9b3cee0f188.pdf', '2024-07-26 14:36:38', '2024-07-26 14:38:11');
+(2, 1, 'Manajer Pembelian', '13/PB/III/2020', '2017-07-27', 'Pengiriman Barang yang Rusak', 'Yth. Direktur Jaya Kencana<br>\r\nJl. Kemuning Raya No. 34<br>\r\nJakarta\r\n\r\nDengan hormat.<br>\r\nDengan ini kami beritahukan kepada Sudara atas kiriman berupa 10 unit Televisi LCD dengan merk LG yang kami terima dalam kondisi rusak. Setelah kami adakan penelitian ternyata terdapat 5 barang televisi yang mengalami kerusakan.\r\n\r\nKami berpendapat bahwa kerusakan tersebut karena kurangnya ketelitian dalam *packing* barang. Kami juga menganggap hal ini adalah kelalaian dari pihak Anda sebagai pengirim barang pesanan tersebut.\r\n\r\nSehubungan dengan terjadinya kerusakan pada barang yang Sudara kirim, maka kami bermaksud untuk meminta barang baru dari 5 kerusakan Televisi LCD sebagai pengganti barang yang rusak. Dengan ongkos kirim menjadi tanggungan Saudara. Untuk lebih memudahkan menyelesaikan persoalan tersebut, bersama ini kami lampirkan dokumen-dokumen dari barang-barang tersebut.\r\n\r\nDemikian surat klaim ini kami buat dengan harapan adanya perbaikan kualitas barang, sehingga ke ke depannya tidak terjadi masalah yang sama. Atas perhatian Saudara, kami ucapkan terima kasih.\r\n<br><br><br>\r\nHormat kami,\r\n<br><br><br>\r\nMoh. Arifin<br>\r\nManajer Pembelian', 0, 'dff7f92e33d37559d23c56faf8d47a457da15ba58eae8abae3a1d9b3cee0f188.pdf', '2024-07-26 14:36:38', '2024-07-27 14:44:30');
 
 -- --------------------------------------------------------
 
