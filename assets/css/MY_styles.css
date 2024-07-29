@@ -22,3 +22,8 @@ button.btn:active span.btn
 table.table.dataTable.table-hover>tbody>tr:hover>* {
     box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
 }
+
+.img-account-profile {
+    height: 10rem;
+    width: 10rem;
+}
